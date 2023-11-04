@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: auto auto
+        }
+        
+        td {
+            width: 10em;
+            line-height: 7em;
+            font-size: x-large;
+        }
+        
+        .ui-btn {
+            width: 15em;
+            height: 5em;
+            line-height: 10em;
+            font-size: x-large;
+        }
+        
+        .btn_click {
+            width: 15em;
+            height: 5em;
+            line-height: 7em;
+            font-size: x-large;
+        }
+        
+        #text_input {
+            width: 60em;
+            line-height: 10em;
+            font-size: x-large;
+            text-align: right;
+        }
+    </style>
+</head>
+<table>
+    <tr>
+        <td colspan="3"><input id="text_input" type="text" disabled/></td>
+    </tr>
+    <tr>
+        <td><input id="ac" class="btn_click" type="button" value="AC" /></td>
+        <td><input id="del" class="btn_click" type="button" value="DEL" /></td>
+        <td><input id="all" class="btn_click" type="button" value="=" /></td>
+
+    </tr>
+    <tr>
+        <td><input id="btn1" class="ui-btn" type="button" value="1" /></td>
+        <td><input id="btn2" class="ui-btn" type="button" value="2" /></td>
+        <td><input id="btn3" class="ui-btn" type="button" value="3" /></td>
+    </tr>
+    <tr>
+        <td><input id="btn4" class="ui-btn" type="button" value="4" /></td>
+        <td><input id="btn5" class="ui-btn" type="button" value="5" /></td>
+        <td><input id="btn6" class="ui-btn" type="button" value="6" /></td>
+    </tr>
+    <tr>
+        <td><input id="btn7" class="ui-btn" type="button" value="7" /></td>
+        <td><input id="btn8" class="ui-btn" type="button" value="8" /></td>
+        <td><input id="btn9" class="ui-btn" type="button" value="9" /></td>
+    </tr>
+    <tr>
+        <td><input class="ui-btn" type="button" value="." /></td>
+        <td><input id="btn0" class="ui-btn" type="button" value="0" /></td>
+        <td><input id="add" class="ui-btn" type="button" value="+" /></td>
+    </tr>
+    <tr>
+        <td><input id="mul" class="ui-btn" type="button" value="-" /></td>
+        <td><input id="xx" class="ui-btn" type="button" value="*" /></td>
+        <td><input id="yy" class="ui-btn" type="button" value="/" /></td>
+    </tr>
+
+
+</table>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("body").ready(function() {
+            btn_setup();
+        });
+    });
+
+    function btn_click(key) {
+        if (!isNaN(key)) {
+            $("#text_input").val($("#text_input").val() + key);
+        }
+    }
+
+    function btn_setup() {
+        for (var i = 0; i <= 9; i++) {
+            let key = i;
+            $("#btn" + i).on('click', function() {
+                btn_click(key);
+            });
+        }
+        <!-- $("#add").click( -->
+        $("#add").on("click", function() {
+            $("#text_input").val($("#text_input").val() + "+");
+        });
+        $("#mul").on("click", function() {
+            $("#text_input").val($("#text_input").val() + "-");
+        });
+        $("#xx").on("click", function() {
+            $("#text_input").val($("#text_input").val() + "*");
+        });
+        $("#yy").on("click", function() {
+            $("#text_input").val($("#text_input").val() + "/");
+        });
+        $("#all").on("click", function() {
+            $("#text_input").val(eval($("#text_input").val()));
+        });
+        $("#ac").on("click", function() {
+            $("#text_input").val('0');
+        });
+        $("#del").on("click", function() {
+            $("#text_input").val($("#text_input").val().slice(0, $("#text_input").val().length - 1));
+        });
+
+    }
+</script>
+</body>
+
+</html>
